@@ -1,0 +1,17 @@
+__pycache__/
+Food101
+Images
+ImageSets
+yolo_dataset
+.venv/
+
+*.pt
+**/weights/
+
+**/train_batch*
+**/val_batch*
+
+**/events.out.tfevents.*
+**/__pycache__/
+*.pyc
+.ipynb_checkpoints/
