@@ -3,6 +3,7 @@ Food101
 Images
 ImageSets
 yolo_dataset
+segmentation_clean/yolo_dataset_clean/
 .venv/
 
 *.pt
@@ -15,3 +16,6 @@ yolo_dataset
 **/__pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+*.cbm
+**/catboost_info/
