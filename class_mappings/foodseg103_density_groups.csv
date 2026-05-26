@@ -1,0 +1,105 @@
+source_dataset,class_id,class_name,density_group,use_for_mask,notes
+FoodSeg103,0,background,ignore,false,not food
+FoodSeg103,1,candy,dessert,true,sugar dense
+FoodSeg103,2,egg tart,dessert,true,pastry dessert
+FoodSeg103,3,french fries,starch,true,fried potato
+FoodSeg103,4,chocolate,dessert,true,dense dessert
+FoodSeg103,5,biscuit,bread,true,baked starch
+FoodSeg103,6,popcorn,starch,true,low density starch
+FoodSeg103,7,pudding,dessert,true,soft dessert
+FoodSeg103,8,ice cream,dairy_dessert,true,frozen dairy dessert
+FoodSeg103,9,cheese butter,dairy_fat,true,dense dairy/fat
+FoodSeg103,10,cake,dessert,true,baked dessert
+FoodSeg103,11,wine,liquid,true,beverage
+FoodSeg103,12,milkshake,liquid,true,dense beverage
+FoodSeg103,13,coffee,liquid,true,beverage
+FoodSeg103,14,juice,liquid,true,beverage
+FoodSeg103,15,milk,liquid,true,beverage
+FoodSeg103,16,tea,liquid,true,beverage
+FoodSeg103,17,almond,nuts,true,dense nuts
+FoodSeg103,18,red beans,starch_legume,true,legume
+FoodSeg103,19,cashew,nuts,true,dense nuts
+FoodSeg103,20,dried cranberries,fruit_dried,true,dried fruit
+FoodSeg103,21,soy,starch_legume,true,legume
+FoodSeg103,22,walnut,nuts,true,dense nuts
+FoodSeg103,23,peanut,nuts,true,dense nuts
+FoodSeg103,24,egg,protein,true,egg
+FoodSeg103,25,apple,fruit,true,fresh fruit
+FoodSeg103,26,date,fruit_dried,true,dried fruit
+FoodSeg103,27,apricot,fruit,true,fresh fruit
+FoodSeg103,28,avocado,fruit_fat,true,fatty fruit
+FoodSeg103,29,banana,fruit,true,fresh fruit
+FoodSeg103,30,strawberry,fruit,true,fresh fruit
+FoodSeg103,31,cherry,fruit,true,fresh fruit
+FoodSeg103,32,blueberry,fruit,true,fresh fruit
+FoodSeg103,33,raspberry,fruit,true,fresh fruit
+FoodSeg103,34,mango,fruit,true,fresh fruit
+FoodSeg103,35,olives,fruit_fat,true,fatty fruit
+FoodSeg103,36,peach,fruit,true,fresh fruit
+FoodSeg103,37,lemon,fruit,true,citrus
+FoodSeg103,38,pear,fruit,true,fresh fruit
+FoodSeg103,39,fig,fruit,true,fresh fruit
+FoodSeg103,40,pineapple,fruit,true,fresh fruit
+FoodSeg103,41,grape,fruit,true,fresh fruit
+FoodSeg103,42,kiwi,fruit,true,fresh fruit
+FoodSeg103,43,melon,fruit,true,fresh fruit
+FoodSeg103,44,orange,fruit,true,citrus
+FoodSeg103,45,watermelon,fruit,true,high water fruit
+FoodSeg103,46,steak,meat,true,dense protein
+FoodSeg103,47,pork,meat,true,dense protein
+FoodSeg103,48,chicken duck,meat,true,poultry
+FoodSeg103,49,sausage,meat_processed,true,processed meat
+FoodSeg103,50,fried meat,meat,true,dense protein
+FoodSeg103,51,lamb,meat,true,dense protein
+FoodSeg103,52,sauce,sauce,true,condiment/sauce
+FoodSeg103,53,crab,seafood,true,seafood
+FoodSeg103,54,fish,seafood,true,seafood
+FoodSeg103,55,shellfish,seafood,true,seafood
+FoodSeg103,56,shrimp,seafood,true,seafood
+FoodSeg103,57,soup,liquid,true,soup/liquid
+FoodSeg103,58,bread,bread,true,bread
+FoodSeg103,59,corn,starch,true,grain vegetable
+FoodSeg103,60,hamburg,mixed_main,true,mixed dish
+FoodSeg103,61,pizza,mixed_main,true,mixed dish
+FoodSeg103,62,hanamaki baozi,bread,true,filled bread
+FoodSeg103,63,wonton dumplings,starch_main,true,filled starch
+FoodSeg103,64,pasta,starch_main,true,pasta
+FoodSeg103,65,noodles,starch_main,true,noodles
+FoodSeg103,66,rice,starch_main,true,rice
+FoodSeg103,67,pie,dessert,true,pie/pastry
+FoodSeg103,68,tofu,protein,true,soy protein
+FoodSeg103,69,eggplant,vegetable,true,dense vegetable
+FoodSeg103,70,potato,starch,true,potato
+FoodSeg103,71,garlic,vegetable,true,aromatic vegetable
+FoodSeg103,72,cauliflower,vegetable,true,vegetable
+FoodSeg103,73,tomato,vegetable,true,watery vegetable
+FoodSeg103,74,kelp,seaweed,true,sea vegetable
+FoodSeg103,75,seaweed,seaweed,true,sea vegetable
+FoodSeg103,76,spring onion,vegetable,true,aromatic vegetable
+FoodSeg103,77,rape,leafy_veg,true,leafy vegetable
+FoodSeg103,78,ginger,vegetable,true,aromatic vegetable
+FoodSeg103,79,okra,vegetable,true,vegetable
+FoodSeg103,80,lettuce,leafy_veg,true,leafy vegetable
+FoodSeg103,81,pumpkin,starch_veg,true,dense vegetable
+FoodSeg103,82,cucumber,vegetable,true,watery vegetable
+FoodSeg103,83,white radish,vegetable,true,watery vegetable
+FoodSeg103,84,carrot,vegetable,true,root vegetable
+FoodSeg103,85,asparagus,vegetable,true,vegetable
+FoodSeg103,86,bamboo shoots,vegetable,true,vegetable
+FoodSeg103,87,broccoli,vegetable,true,vegetable
+FoodSeg103,88,celery stick,vegetable,true,low density vegetable
+FoodSeg103,89,cilantro mint,leafy_veg,true,herbs
+FoodSeg103,90,snow peas,vegetable,true,vegetable
+FoodSeg103,91,cabbage,leafy_veg,true,leafy vegetable
+FoodSeg103,92,bean sprouts,leafy_veg,true,sprouts
+FoodSeg103,93,onion,vegetable,true,aromatic vegetable
+FoodSeg103,94,pepper,vegetable,true,vegetable
+FoodSeg103,95,green beans,vegetable,true,vegetable
+FoodSeg103,96,French beans,vegetable,true,vegetable
+FoodSeg103,97,king oyster mushroom,mushroom,true,mushroom
+FoodSeg103,98,shiitake,mushroom,true,mushroom
+FoodSeg103,99,enoki mushroom,mushroom,true,mushroom
+FoodSeg103,100,oyster mushroom,mushroom,true,mushroom
+FoodSeg103,101,white button mushroom,mushroom,true,mushroom
+FoodSeg103,102,salad,leafy_veg,true,coarse salad class
+FoodSeg103,103,other ingredients,unknown,true,unknown ingredient

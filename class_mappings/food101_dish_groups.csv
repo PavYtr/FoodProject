@@ -1,0 +1,102 @@
+source_dataset,class_name,dish_group,notes
+Food101,apple_pie,dessert,pie dessert
+Food101,baby_back_ribs,meat_main,meat main
+Food101,baklava,dessert,sweet pastry
+Food101,beef_carpaccio,meat_main,beef
+Food101,beef_tartare,meat_main,beef
+Food101,beet_salad,salad,vegetable salad
+Food101,beignets,dessert,fried dessert
+Food101,bibimbap,starch_main,rice mixed dish
+Food101,bread_pudding,dessert,bread dessert
+Food101,breakfast_burrito,mixed_main,wrapped mixed dish
+Food101,bruschetta,bread,bread appetizer
+Food101,caesar_salad,salad,salad
+Food101,cannoli,dessert,pastry dessert
+Food101,caprese_salad,salad,salad
+Food101,carrot_cake,dessert,cake
+Food101,ceviche,seafood,seafood
+Food101,cheesecake,dessert,cake
+Food101,cheese_plate,dairy_fat,cheese
+Food101,chicken_curry,meat_main,chicken sauce dish
+Food101,chicken_quesadilla,mixed_main,wrapped mixed dish
+Food101,chicken_wings,meat_main,chicken
+Food101,chocolate_cake,dessert,cake
+Food101,chocolate_mousse,dessert,soft dessert
+Food101,churros,dessert,fried dessert
+Food101,clam_chowder,soup_liquid,soup
+Food101,club_sandwich,sandwich,sandwich
+Food101,crab_cakes,seafood,seafood
+Food101,creme_brulee,dessert,soft dessert
+Food101,croque_madame,sandwich,sandwich
+Food101,cup_cakes,dessert,cake
+Food101,deviled_eggs,protein,egg dish
+Food101,donuts,dessert,fried dessert
+Food101,dumplings,starch_main,filled starch
+Food101,edamame,starch_legume,legume
+Food101,eggs_benedict,breakfast,egg breakfast
+Food101,escargots,seafood,seafood/snail
+Food101,falafel,starch_legume,legume fried
+Food101,filet_mignon,meat_main,meat main
+Food101,fish_and_chips,seafood,seafood and starch
+Food101,foie_gras,meat_main,dense protein/fat
+Food101,french_fries,starch,fried potato
+Food101,french_onion_soup,soup_liquid,soup
+Food101,french_toast,breakfast,bread breakfast
+Food101,fried_calamari,seafood,seafood fried
+Food101,fried_rice,starch_main,rice
+Food101,frozen_yogurt,dairy_dessert,frozen dairy
+Food101,garlic_bread,bread,bread
+Food101,gnocchi,starch_main,pasta/potato
+Food101,greek_salad,salad,salad
+Food101,grilled_cheese_sandwich,sandwich,sandwich
+Food101,grilled_salmon,seafood,seafood
+Food101,guacamole,sauce,avocado dip
+Food101,gyoza,starch_main,filled starch
+Food101,hamburger,sandwich,sandwich
+Food101,hot_and_sour_soup,soup_liquid,soup
+Food101,hot_dog,sandwich,sandwich
+Food101,huevos_rancheros,breakfast,egg mixed dish
+Food101,hummus,sauce,legume dip
+Food101,ice_cream,dairy_dessert,frozen dairy
+Food101,lasagna,starch_main,pasta
+Food101,lobster_bisque,soup_liquid,soup
+Food101,lobster_roll_sandwich,sandwich,seafood sandwich
+Food101,macaroni_and_cheese,starch_main,pasta
+Food101,macarons,dessert,sweet pastry
+Food101,miso_soup,soup_liquid,soup
+Food101,mussels,seafood,seafood
+Food101,nachos,mixed_main,starch mixed dish
+Food101,omelette,breakfast,egg dish
+Food101,onion_rings,starch,fried vegetable/starch
+Food101,oysters,seafood,seafood
+Food101,pad_thai,starch_main,noodles
+Food101,paella,starch_main,rice mixed dish
+Food101,pancakes,breakfast,bread breakfast
+Food101,panna_cotta,dessert,soft dessert
+Food101,peking_duck,meat_main,meat main
+Food101,pho,soup_liquid,noodle soup
+Food101,pizza,mixed_main,pizza
+Food101,pork_chop,meat_main,meat main
+Food101,poutine,mixed_main,fries mixed dish
+Food101,prime_rib,meat_main,meat main
+Food101,pulled_pork_sandwich,sandwich,meat sandwich
+Food101,ramen,soup_liquid,noodle soup
+Food101,ravioli,starch_main,pasta
+Food101,red_velvet_cake,dessert,cake
+Food101,risotto,starch_main,rice
+Food101,samosa,starch_main,filled starch
+Food101,sashimi,seafood,seafood
+Food101,scallops,seafood,seafood
+Food101,seaweed_salad,salad,seaweed salad
+Food101,shrimp_and_grits,seafood,seafood and starch
+Food101,spaghetti_bolognese,starch_main,pasta
+Food101,spaghetti_carbonara,starch_main,pasta
+Food101,spring_rolls,starch_main,wrapped starch
+Food101,steak,meat_main,meat main
+Food101,strawberry_shortcake,dessert,cake
+Food101,sushi,starch_main,rice seafood mixed
+Food101,tacos,mixed_main,wrapped mixed dish
+Food101,takoyaki,starch_main,filled starch
+Food101,tiramisu,dessert,soft dessert
+Food101,tuna_tartare,seafood,seafood
+Food101,waffles,breakfast,bread breakfast
