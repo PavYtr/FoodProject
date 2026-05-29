@@ -1,0 +1,18 @@
+services:
+  foodapp:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "7860:7860"
+    environment:
+      GRADIO_SERVER_NAME: "0.0.0.0"
+      GRADIO_SERVER_PORT: "7860"
+      FOOD_PROJECT_CONFIG: "/app/configs/app.yaml"
+      FOOD_PROJECT_DEVICE: "cpu"
+      DEPTH_MODEL: "depth-anything-v3-base"
+      YOLO_CONFIG_DIR: "/tmp/Ultralytics"
+      MPLCONFIGDIR: "/tmp/matplotlib"
+    volumes:
+      - ./models:/app/models:ro
+      - ./class_mappings:/app/class_mappings:ro

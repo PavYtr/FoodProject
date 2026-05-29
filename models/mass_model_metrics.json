@@ -1,0 +1,21 @@
+{
+  "source_notebook": "FoodProject/mass_estimation/pseudo-depth-v3-try2/train_catboost_pseudodepth_v3_try2.ipynb",
+  "source_metrics": "FoodProject/mass_estimation/pseudo-depth-v3-try2/catboost_pseudodepth_v3_try2_metrics.json",
+  "model_sha256": "7EE001A6F74A66FEE6B68D796934537B3FD3DA3B8EBA292580A06E024EBE9E7C",
+  "valid_mae_g": 78.62302094012844,
+  "valid_rmse_g": 112.26686050134492,
+  "valid_r2": 0.49186088785767357,
+  "baseline_median_mae_g": 123.34360554699538,
+  "bin_mae_g": {
+    "0-100": 45.26693771586627,
+    "100-250": 54.5304496677612,
+    "250-500": 100.88817046266436,
+    "500+": 286.9300457450163
+  },
+  "train_rows": 2595,
+  "valid_rows": 649,
+  "feature_count": 185,
+  "categorical_feature_count": 14,
+  "target_transform": "log1p",
+  "prediction_transform": "expm1"
+}

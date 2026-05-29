@@ -1,0 +1,20 @@
+paths:
+  models_dir: models
+  classifier_model: models/yolo_cls.pt
+  food_segmentation_model: models/yolo_food_seg.pt
+  plate_segmentation_model: models/plate_seg.pt
+  mass_model: models/mass_model.cbm
+  food101_mapping: class_mappings/food101_dish_groups.csv
+  foodseg103_mapping: class_mappings/foodseg103_density_groups.csv
+
+inference:
+  device: cpu
+  image_size: 640
+  depth_model: depth-anything-v3-base
+  classifier_top_k: 5
+  class_confidence_threshold: 0.10
+  mask_confidence_threshold: 0.25
+  plate_diameter_cm: 26.0
+  default_food_height_cm: 1.8
+  allow_heuristic_mass_fallback: false
+  mass_model_output_transform: log1p

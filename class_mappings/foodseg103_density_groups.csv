@@ -1,0 +1,105 @@
+class_name,density_group,use_for_mask
+background,ignore,false
+candy,dessert,true
+egg tart,dessert,true
+french fries,starch,true
+chocolate,dessert,true
+biscuit,dessert,true
+popcorn,starch,true
+pudding,dairy_dessert,true
+ice cream,dairy_dessert,true
+cheese butter,dairy_fat,true
+cake,dessert,true
+wine,liquid,false
+milkshake,dairy_dessert,false
+coffee,liquid,false
+juice,liquid,false
+milk,liquid,false
+tea,liquid,false
+almond,nuts,true
+red beans,starch_legume,true
+cashew,nuts,true
+dried cranberries,fruit_dried,true
+soy,starch_legume,true
+walnut,nuts,true
+peanut,nuts,true
+egg,protein,true
+apple,fruit,true
+date,fruit_dried,true
+apricot,fruit,true
+avocado,fruit_fat,true
+banana,fruit,true
+strawberry,fruit,true
+cherry,fruit,true
+blueberry,fruit,true
+raspberry,fruit,true
+mango,fruit,true
+olives,fruit_fat,true
+peach,fruit,true
+lemon,fruit,true
+pear,fruit,true
+fig,fruit,true
+pineapple,fruit,true
+grape,fruit,true
+kiwi,fruit,true
+melon,fruit,true
+orange,fruit,true
+watermelon,fruit,true
+steak,meat,true
+pork,meat,true
+chicken duck,meat,true
+sausage,meat_processed,true
+fried meat,meat,true
+lamb,meat,true
+sauce,sauce,false
+crab,seafood,true
+fish,seafood,true
+shellfish,seafood,true
+shrimp,seafood,true
+soup,soup_liquid,true
+bread,bread,true
+corn,starch_veg,true
+hamburg,sandwich,true
+pizza,starch_main,true
+hanamaki baozi,starch_main,true
+wonton dumplings,starch_main,true
+pasta,starch_main,true
+noodles,starch_main,true
+rice,starch_main,true
+pie,starch_main,true
+tofu,protein,true
+eggplant,vegetable,true
+potato,starch_veg,true
+garlic,vegetable,true
+cauliflower,vegetable,true
+tomato,vegetable,true
+kelp,seaweed,true
+seaweed,seaweed,true
+spring onion,vegetable,true
+rape,leafy_veg,true
+ginger,vegetable,true
+okra,vegetable,true
+lettuce,leafy_veg,true
+pumpkin,starch_veg,true
+cucumber,vegetable,true
+white radish,vegetable,true
+carrot,vegetable,true
+asparagus,vegetable,true
+bamboo shoots,vegetable,true
+broccoli,vegetable,true
+celery stick,vegetable,true
+cilantro mint,leafy_veg,true
+snow peas,vegetable,true
+cabbage,leafy_veg,true
+bean sprouts,vegetable,true
+onion,vegetable,true
+pepper,vegetable,true
+green beans,vegetable,true
+French beans,vegetable,true
+king oyster mushroom,mushroom,true
+shiitake,mushroom,true
+enoki mushroom,mushroom,true
+oyster mushroom,mushroom,true
+white button mushroom,mushroom,true
+salad,salad,true
+other ingredients,unknown,true
