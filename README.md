@@ -1,7 +1,5 @@
 # FoodProject App
 
-Сервисный inference для пайплайна из ноутбука
-`FoodProject/mass_estimation/pseudo-depth-v3-try2/train_catboost_pseudodepth_v3_try2.ipynb`.
 
 ## Пайплайн
 
@@ -17,9 +15,6 @@ image
   -> Gradio UI
 ```
 
-CatBoost модель `models/mass_model.cbm` совпадает с
-`FoodProject/models/catboost_pseudodepth_v3_try2.cbm`. Предикт модели обучен на
-`log1p(mass)`, приложение делает обратное преобразование через `expm1`.
 
 Метрики notebook-модели:
 
@@ -55,21 +50,6 @@ docker/
   Dockerfile
 ```
 
-## Локальный запуск
-
-CatBoost не поддерживается в текущем Python 3.14 окружении. Для локального
-запуска используй Python 3.11/3.12 или Docker.
-
-```bash
-py -3.11 -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-python scripts/check_runtime.py
-python app/app.py
-```
-
-Открой `http://127.0.0.1:7860`.
-
 ## Docker
 
 ```bash
@@ -77,10 +57,6 @@ docker compose up --build
 ```
 
 Открой `http://localhost:7860`.
-
-В контейнере Gradio слушает `0.0.0.0:7860`. Папки `models/` и
-`class_mappings/` монтируются read-only, поэтому один и тот же образ можно
-поднять на другом устройстве при наличии этих файлов.
 
 ## Конфигурация
 
@@ -103,7 +79,3 @@ GRADIO_SERVER_NAME
 GRADIO_SERVER_PORT
 ```
 
-Если CatBoost или `mass_model.cbm` недоступны, приложение не подменяет результат
-формулой: в UI будет `Масса: не рассчитана`. Эвристический fallback можно
-включить только явно через `FOOD_PROJECT_ALLOW_HEURISTIC_MASS_FALLBACK=true`;
-это demo-режим, не режим метрик ноутбука.
