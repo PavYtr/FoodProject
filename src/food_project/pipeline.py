@@ -11,7 +11,7 @@ from food_project.food_segmentation import YOLOSegmentationModel
 from food_project.mass_estimation import MassEstimator
 from food_project.plate_segmentation import PlateSegmentationModel
 from food_project.preprocessing import ensure_pil_image, quality_warnings
-from food_project.schemas import ClassificationPrediction, PredictionResult
+from food_project.schemas import PredictionResult
 
 
 class FoodNutritionPipeline:
@@ -58,13 +58,12 @@ class FoodNutritionPipeline:
         self.mass_estimator.load_model()
         return self._model_status()
 
-    def predict(self, image: Any, text: str | None = None) -> PredictionResult:
+    def predict(self, image: Any) -> PredictionResult:
         pil_image = ensure_pil_image(image)
         warnings = quality_warnings(pil_image)
 
         top_classes, classifier_warnings = self.classifier.predict(pil_image)
         warnings.extend(classifier_warnings)
-        top_classes = self._apply_text_hint(top_classes, text)
 
         dish_class = top_classes[0].label
         class_confidence = top_classes[0].confidence
@@ -127,19 +126,6 @@ class FoodNutritionPipeline:
             "plate_overlay": plate_overlay,
             "depth_map": depth_to_image(result.depth_map),
         }
-
-    def _apply_text_hint(
-        self,
-        top_classes: list[ClassificationPrediction],
-        text: str | None,
-    ) -> list[ClassificationPrediction]:
-        if not text or top_classes[0].label != "unknown":
-            return top_classes
-
-        normalized = text.strip().lower().replace(" ", "_")
-        if not normalized:
-            return top_classes
-        return [ClassificationPrediction(normalized, 0.0), *top_classes[1:]]
 
     def _model_status(self) -> dict[str, str]:
         return {

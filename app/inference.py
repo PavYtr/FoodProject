@@ -24,14 +24,13 @@ def get_pipeline() -> FoodNutritionPipeline:
 
 def predict_for_ui(
     image: Any,
-    text: str | None,
     show_intermediate: bool,
 ) -> tuple[Any, ...]:
     if image is None:
         return _empty_outputs("Загрузите изображение блюда.")
 
     try:
-        result = get_pipeline().predict(image=image, text=text)
+        result = get_pipeline().predict(image=image)
     except Exception as exc:  # pragma: no cover - UI safety net
         return _empty_outputs(f"Ошибка inference: {exc}")
 

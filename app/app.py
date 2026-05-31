@@ -31,7 +31,6 @@ def build_app() -> gr.Blocks:
         with gr.Row(equal_height=False):
             with gr.Column(scale=4, min_width=320):
                 image = gr.Image(label="Изображение", type="pil", height=360)
-                text = gr.Textbox(label="Описание", lines=2, placeholder="например: pizza, sushi, caesar salad")
                 show_intermediate = gr.Checkbox(label="Промежуточные результаты", value=True)
                 submit = gr.Button("Оценить", variant="primary")
 
@@ -81,7 +80,7 @@ def build_app() -> gr.Blocks:
 
         submit.click(
             fn=predict_for_ui,
-            inputs=[image, text, show_intermediate],
+            inputs=[image, show_intermediate],
             outputs=[
                 summary,
                 classes,
