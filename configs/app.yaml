@@ -1,7 +1,7 @@
 paths:
   models_dir: models
   classifier_model: models/yolo_cls.pt
-  food_segmentation_model: models/yolo_food_seg.pt
+  food_segmentation_model: models/yolo_food_sem.pt
   plate_segmentation_model: models/plate_seg.pt
   mass_model: models/mass_model.cbm
   food101_mapping: class_mappings/food101_dish_groups.csv

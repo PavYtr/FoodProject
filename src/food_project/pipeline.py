@@ -7,7 +7,7 @@ from food_project.class_mapping import ClassMapping
 from food_project.classification import YOLOClassifier
 from food_project.config import PipelineConfig, load_config
 from food_project.depth import DepthEstimator
-from food_project.food_segmentation import YOLOSegmentationModel
+from food_project.food_segmentation import YOLOSemanticSegmentationModel
 from food_project.mass_estimation import MassEstimator
 from food_project.plate_segmentation import PlateSegmentationModel
 from food_project.preprocessing import ensure_pil_image, quality_warnings
@@ -27,13 +27,12 @@ class FoodNutritionPipeline:
             image_size=self.config.image_size,
             top_k=self.config.classifier_top_k,
         )
-        self.food_segmenter = YOLOSegmentationModel(
-            name="Сегментатор еды",
+        self.food_segmenter = YOLOSemanticSegmentationModel(
+            name="Food semantic segmenter",
             model_path=self.config.resolved_food_segmentation_model,
+            mapping=self.mapping,
             device=self.config.device,
             image_size=self.config.image_size,
-            confidence=self.config.mask_confidence_threshold,
-            fallback_kind="food",
         )
         self.plate_segmenter = PlateSegmentationModel(
             model_path=self.config.resolved_plate_segmentation_model,
@@ -86,8 +85,10 @@ class FoodNutritionPipeline:
             dish_group=dish_group,
             top_classes=top_classes,
             food_segments=food_segments,
+            food_segmentation_stats=self.food_segmenter.last_stats,
             plate_segment=plate_segment,
             plate_segments=plate_segments,
+            plate_segmentation_stats=self.plate_segmenter.last_stats,
             depth_map=depth_map,
             depth_stats=depth_stats,
             image_size=pil_image.size,

@@ -38,84 +38,12 @@ MASS_GROUPS = [
 ]
 
 
-FALLBACK_FEATURE_NAMES = [
-    "food101_top5_conf",
-    "food101_top4_conf",
-    "food101_top3_conf",
-    "food101_top2_conf",
-    "food101_entropy",
-    "food101_top1_conf",
-    *[f"area_ratio_group_{group}" for group in reversed(MASS_GROUPS)],
-    *[
-        f"union_{method}_ring{ring}_{metric}"
-        for method in ("iqrz", "p05p95")
-        for ring in ("070", "035", "015")
-        for metric in (
-            "p95_abs_height",
-            "p75_abs_height",
-            "mean_abs_height",
-            "vol_food_minus_plate",
-            "vol_plate_minus_food",
-            "plate_depth",
-        )
-    ],
-    "top3_area_ratio",
-    "top2_area_ratio",
-    "top1_area_ratio",
-    "plate_covered_by_food_ratio",
-    "food_in_plate_ratio",
-    "food_plate_intersection_px",
-    "food_to_plate_area_ratio",
-    "plate_area_ratio",
-    "plate_equiv_diameter",
-    "plate_solidity",
-    "plate_compactness",
-    "plate_perimeter",
-    "plate_area_px",
-    "union_equiv_diameter",
-    "union_solidity",
-    "union_compactness",
-    "union_perimeter",
-    "union_area_px",
-    "n_unique_seg_classes",
-    "area_ratio",
-    "log_area",
-    "sqrt_area",
-    "area_px",
-    *[
-        item
-        for group in reversed(MASS_GROUPS)
-        for item in (f"pvol_group_{group}", f"count_group_{group}", f"area_group_{group}")
-    ],
-    "image_area_px",
-    "plate_conf_max",
-    "plate_conf_mean",
-    "n_plate_masks",
-    "seg_conf_max",
-    "seg_conf_mean",
-    "n_masks_kept",
-    "n_masks_raw",
-    "food101_top5",
-    "food101_top4",
-    "food101_top3",
-    "food101_top2",
-    "food101_dish_group",
-    "food101_top1",
-    "dominant_density_group",
-    "dominant_seg_class",
-    "top3_density_group",
-    "top3_seg_class",
-    "top2_density_group",
-    "top2_seg_class",
-    "top1_density_group",
-    "top1_seg_class",
-]
-
-
 def _notebook_feature_names() -> list[str]:
     names = [
         "n_masks_raw",
         "n_masks_kept",
+        "n_semantic_classes_raw",
+        "n_semantic_classes_kept",
         "seg_conf_mean",
         "seg_conf_max",
         "n_plate_masks",
@@ -229,13 +157,17 @@ class MassEstimator:
         depth_map: Any,
         depth_stats: dict[str, float],
         image_size: tuple[int, int],
+        food_segmentation_stats: dict[str, float] | None = None,
+        plate_segmentation_stats: dict[str, float] | None = None,
     ) -> tuple[NutritionEstimate, dict[str, float], list[str]]:
         feature_bank, ui_features, warnings = self._build_feature_bank(
             dish_group=dish_group,
             top_classes=top_classes,
             food_segments=food_segments,
+            food_segmentation_stats=food_segmentation_stats,
             plate_segment=plate_segment,
             plate_segments=plate_segments,
+            plate_segmentation_stats=plate_segmentation_stats,
             depth_map=depth_map,
             depth_stats=depth_stats,
             image_size=image_size,
@@ -288,11 +220,15 @@ class MassEstimator:
         depth_map: Any,
         depth_stats: dict[str, float],
         image_size: tuple[int, int],
+        food_segmentation_stats: dict[str, float] | None = None,
+        plate_segmentation_stats: dict[str, float] | None = None,
     ) -> tuple[dict[str, Any], dict[str, float], list[str]]:
         warnings: list[str] = []
         width, height = image_size
         image_area_px = float(max(width * height, 1))
         shape = (height, width)
+        food_segmentation_stats = food_segmentation_stats or {}
+        plate_segmentation_stats = plate_segmentation_stats or {}
 
         usable_segments = [segment for segment in food_segments if segment.use_for_mass]
         if not usable_segments:
@@ -311,7 +247,7 @@ class MassEstimator:
 
         area_ratio = union_area_px / image_area_px
         plate_area_ratio = plate_area_px / image_area_px
-        food_to_plate_area_ratio = union_area_px / max(plate_area_px, 1.0)
+        food_to_plate_area_ratio = union_area_px / plate_area_px if plate_area_px else 0.0
         food_in_plate_ratio = intersection_px / max(union_area_px, 1.0)
         plate_covered_by_food_ratio = intersection_px / max(plate_area_px, 1.0)
 
@@ -341,14 +277,40 @@ class MassEstimator:
             "food_to_plate_area_ratio": food_to_plate_area_ratio,
             "food_in_plate_ratio": food_in_plate_ratio,
             "plate_covered_by_food_ratio": plate_covered_by_food_ratio,
-            "n_masks_raw": float(len(food_segments)),
-            "n_masks_kept": float(len(usable_segments)),
-            "n_plate_masks": float(len(plate_segments)),
-            "n_unique_seg_classes": float(len({segment.label for segment in usable_segments})),
-            "seg_conf_mean": _mean([segment.confidence for segment in food_segments]),
-            "seg_conf_max": _max([segment.confidence for segment in food_segments]),
-            "plate_conf_mean": _mean([segment.confidence for segment in plate_segments]),
-            "plate_conf_max": _max([segment.confidence for segment in plate_segments]),
+            "n_masks_raw": _stat(food_segmentation_stats, "n_masks_raw", len(food_segments)),
+            "n_masks_kept": _stat(food_segmentation_stats, "n_masks_kept", len(usable_segments)),
+            "n_semantic_classes_raw": _stat(
+                food_segmentation_stats,
+                "n_semantic_classes_raw",
+                _stat(food_segmentation_stats, "n_masks_raw", len(food_segments)),
+            ),
+            "n_semantic_classes_kept": _stat(
+                food_segmentation_stats,
+                "n_semantic_classes_kept",
+                _stat(food_segmentation_stats, "n_masks_kept", len(usable_segments)),
+            ),
+            "n_plate_masks": _stat(plate_segmentation_stats, "n_plate_masks", len(plate_segments)),
+            "n_unique_seg_classes": float(len(_segment_class_ids(usable_segments))),
+            "seg_conf_mean": _stat(
+                food_segmentation_stats,
+                "seg_conf_mean",
+                _mean([segment.confidence for segment in food_segments]),
+            ),
+            "seg_conf_max": _stat(
+                food_segmentation_stats,
+                "seg_conf_max",
+                _max([segment.confidence for segment in food_segments]),
+            ),
+            "plate_conf_mean": _stat(
+                plate_segmentation_stats,
+                "plate_conf_mean",
+                _mean([segment.confidence for segment in plate_segments]),
+            ),
+            "plate_conf_max": _stat(
+                plate_segmentation_stats,
+                "plate_conf_max",
+                _max([segment.confidence for segment in plate_segments]),
+            ),
             "depth_mean": depth_mean,
             "depth_std": depth_std,
             "depth_min": float(depth_stats.get("depth_min", float(depth.min()))),
@@ -614,6 +576,21 @@ def _segment_area_px(segment: SegmentPrediction, image_area_px: float) -> float:
     if segment.mask is not None:
         return float(np.asarray(segment.mask, dtype=bool).sum())
     return float(segment.area_fraction * image_area_px)
+
+
+def _segment_class_ids(segments: list[SegmentPrediction]) -> set[Any]:
+    class_ids: set[Any] = set()
+    for segment in segments:
+        class_ids.add(segment.metadata.get("class_id", segment.label))
+    return class_ids
+
+
+def _stat(stats: dict[str, float], name: str, default: float | int) -> float:
+    try:
+        value = float(stats.get(name, default))
+    except (TypeError, ValueError):
+        return float(default)
+    return value if math.isfinite(value) else float(default)
 
 
 def _resize_depth(depth_map: Any, shape: tuple[int, int]) -> np.ndarray:

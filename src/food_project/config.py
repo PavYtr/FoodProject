@@ -129,7 +129,7 @@ def load_config(config_path: str | Path | None = None) -> PipelineConfig:
         food_segmentation_model=_as_path(
             os.getenv("FOOD_PROJECT_FOOD_SEG_MODEL")
             or paths.get("food_segmentation_model"),
-            models_dir / "yolo_food_seg.pt",
+            models_dir / "yolo_food_sem.pt",
         ),
         plate_segmentation_model=_as_path(
             os.getenv("FOOD_PROJECT_PLATE_SEG_MODEL")

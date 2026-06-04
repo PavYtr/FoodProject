@@ -19,7 +19,7 @@ The application is intended for local inference and demos. Results are model est
 - Segments visible food regions with a YOLO FoodSeg103 model.
 - Detects the plate to estimate scale and food-to-plate ratios.
 - Builds a pseudo-depth map with DepthAnything V3 when available, or a deterministic heuristic fallback.
-- Builds notebook-compatible mass-estimation features.
+- Builds mass-estimation features.
 - Predicts food mass with a CatBoost regressor.
 - Estimates proteins, fats, carbohydrates, and calories from the predicted mass and dish group.
 - Shows intermediate masks, depth maps, feature values, warnings, and model status in the Gradio UI.
@@ -51,18 +51,19 @@ input image
 
 ## Model Metrics
 
-The bundled CatBoost mass model was exported from the `pseudo-depth-v3-try2` notebook workflow.
+The current inference feature schema mirrors `notebooks/train_catboost_pseudodepth_v3_with_semantic.ipynb`.
+The semantic validation metrics are stored in `models/mass_model_semantic.json`.
+To reproduce those metrics, `models/mass_model.cbm` must be the CatBoost export trained with the semantic feature schema.
 
 | Metric | Value |
 | --- | ---: |
-| Validation MAE | 78.62 g |
-| Validation RMSE | 112.27 g |
-| Validation R2 | 0.4919 |
+| Validation MAE | 63.78 g |
+| Validation RMSE | 93.44 g |
+| Validation R2 | 0.6480 |
 | Baseline median MAE | 123.34 g |
 | Train / validation rows | 2595 / 649 |
-| Feature count | 185 |
+| Feature count | 187 |
 
-Detailed metrics are stored in `models/mass_model_metrics.json`.
 
 ## Repository Structure
 
@@ -73,7 +74,7 @@ app/
 src/food_project/
   pipeline.py            End-to-end FoodNutritionPipeline
   classification.py      YOLO Food101 classifier wrapper
-  food_segmentation.py   YOLO FoodSeg103 segmentation wrapper
+  food_segmentation.py   YOLO FoodSeg103 semantic and instance segmentation wrappers
   plate_segmentation.py  Plate segmentation wrapper
   depth.py               DepthAnything V3 integration and heuristic fallback
   mass_estimation.py     Feature builder and CatBoost mass inference
@@ -86,7 +87,7 @@ class_mappings/
   foodseg103_density_groups.csv
 models/
   yolo_cls.pt
-  yolo_food_seg.pt
+  yolo_food_sem.pt
   plate_seg.pt
   mass_model.cbm
   mass_model_metrics.json
@@ -142,7 +143,7 @@ Important settings:
 | Setting | Purpose |
 | --- | --- |
 | `paths.classifier_model` | YOLO Food101 classifier weights |
-| `paths.food_segmentation_model` | YOLO FoodSeg103 segmentation weights |
+| `paths.food_segmentation_model` | YOLO FoodSeg103 semantic segmentation weights |
 | `paths.plate_segmentation_model` | Plate segmentation weights |
 | `paths.mass_model` | CatBoost mass regressor |
 | `inference.device` | Inference device, for example `cpu` or `cuda` |
@@ -179,10 +180,11 @@ Expected files:
 | File | Role |
 | --- | --- |
 | `models/yolo_cls.pt` | Food101 dish classifier |
-| `models/yolo_food_seg.pt` | FoodSeg103 food segmentation model |
+| `models/yolo_food_sem.pt` | Default FoodSeg103 semantic segmentation model |
 | `models/plate_seg.pt` | Plate segmentation model |
 | `models/mass_model.cbm` | CatBoost mass regressor |
-| `models/mass_model_metrics.json` | Metrics summary |
+| `models/mass_model_metrics.json` | Semantic notebook metrics and feature schema |
+
 
 The segmentation components can start without weights and use deterministic demo-mask fallbacks. The classifier reports `unknown` when its weights are unavailable. Mass prediction is stricter: if `mass_model.cbm` or CatBoost is unavailable, mass and nutrition are reported as unavailable unless `FOOD_PROJECT_ALLOW_HEURISTIC_MASS_FALLBACK=true` is explicitly enabled.
 

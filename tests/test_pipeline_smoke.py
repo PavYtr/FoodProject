@@ -30,11 +30,13 @@ def test_pipeline_runs_without_model_weights() -> None:
     assert result.nutrition.source in {"catboost", "heuristic", "unavailable"}
 
 
-def test_try2_feature_schema_contains_notebook_columns() -> None:
-    assert len(FALLBACK_FEATURE_NAMES) == 185
-    assert FALLBACK_FEATURE_NAMES[:10] == [
+def test_semantic_feature_schema_contains_notebook_columns() -> None:
+    assert len(FALLBACK_FEATURE_NAMES) == 187
+    assert FALLBACK_FEATURE_NAMES[:12] == [
         "n_masks_raw",
         "n_masks_kept",
+        "n_semantic_classes_raw",
+        "n_semantic_classes_kept",
         "seg_conf_mean",
         "seg_conf_max",
         "n_plate_masks",
@@ -60,7 +62,7 @@ def _missing_models_config() -> PipelineConfig:
         root_dir=ROOT,
         models_dir=missing_dir,
         classifier_model=missing_dir / "yolo_cls.pt",
-        food_segmentation_model=missing_dir / "yolo_food_seg.pt",
+        food_segmentation_model=missing_dir / "yolo_food_sem.pt",
         plate_segmentation_model=missing_dir / "plate_seg.pt",
         mass_model=missing_dir / "mass_model.cbm",
         food101_mapping=ROOT / "class_mappings" / "food101_dish_groups.csv",

@@ -21,6 +21,7 @@ class SegmentPrediction:
     density_group: str = "unknown"
     use_for_mass: bool = True
     mask: Any = field(default=None, repr=False)
+    metadata: dict[str, Any] = field(default_factory=dict, repr=False)
 
     def as_row(self) -> list[Any]:
         return [
