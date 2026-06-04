@@ -100,10 +100,7 @@ tests/
 ## Requirements
 
 - `git`
-- Python 3.11, 3.12, or 3.13. Python 3.11 is recommended.
-- `pip`
-- The model files listed in `models/README.md`
-- `Docker`, if you want to run the containerized version
+- `Docker`, `Docker Compose v2`
 
 CatBoost is not expected to work with Python 3.14+ for this project.
 
